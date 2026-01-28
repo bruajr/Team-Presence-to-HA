@@ -21,7 +21,7 @@ There are two light_automation_*.yaml files [light_automation_then_off.yaml](./l
 
 Create a new flow in Power Automate
 
-Create two new subflows called SendOn and SendOff
+Create two new subflows called `SendOn` and `SendOff`
 
 <img width="416" height="35" alt="image" src="https://github.com/user-attachments/assets/09624c40-5c73-46da-a1aa-82b9cffa55aa" />
 
@@ -33,8 +33,10 @@ In SendOff use the Invoke web service action, the URL will be `http://YOUR-HA-IP
 
 <img width="468" height="54" alt="image" src="https://github.com/user-attachments/assets/a5b11a65-6186-4951-9c43-55659a2a8bce" />
 
-These are the two webhooks created in teams_webhook.yaml file and will turn your input boolen on or off.
+These are the two webhooks created in `teams_webhook.yaml` file and will turn your input boolen on or off.
+
 In the main flow, create two Set variable actions.
+
 The first variable should be `LastState` and the value should be `off`
 
 <img width="468" height="283" alt="image" src="https://github.com/user-attachments/assets/21a97c12-b178-4a91-8ab5-adcafc76d477" />
@@ -65,11 +67,11 @@ The If Image setup should look something like this
 
 <img width="459" height="517" alt="image" src="https://github.com/user-attachments/assets/3d85c2f0-d0ee-4b57-bd3e-c786aeebb1a7" />
 
-Inside of the If Image bracket add set variable action, the variable should be ‘CurrentState’ and the value should be ‘on’
+Inside of the If Image bracket add set variable action, the variable should be `CurrentState` and the value should be `on`
 
 <img width="468" height="281" alt="image" src="https://github.com/user-attachments/assets/0046a83c-b29a-4181-958f-525a157218f9" />
 
-Next, still inside the If Image bracket add an Else action. Between Else and the end of the If Image bracket add another Set Variable the variable should be ‘CurrentState’ and the value should be ‘off’
+Next, still inside the If Image bracket add an Else action. Between Else and the end of the If Image bracket add another Set Variable the variable should be `CurrentState` and the value should be `off`
 
 <img width="468" height="283" alt="image" src="https://github.com/user-attachments/assets/67a1f1ca-8e3a-4604-8914-d5502019471e" />
 
@@ -77,24 +79,26 @@ Your entire If Image bracket inside of the Loop bracket should look like this
 
 <img width="348" height="252" alt="image" src="https://github.com/user-attachments/assets/6c83f4ba-64d3-4986-aa77-c032738f2275" />
 
-Next, still inside the Loop bracket add an If action First operand should be ‘%CurrentState%’, Operator should be Not equal to, Second operand should be ‘%LastState%’
+Next, still inside the Loop bracket add an If action, First operand should be `%CurrentState%`, Operator should be `Not equal to`, Second operand should be `%LastState%`
 
 <img width="468" height="284" alt="image" src="https://github.com/user-attachments/assets/81483eba-7890-4002-8600-a9903933494a" />
 
-Next, inside of that If bracket, add another If action. First operand should be ‘%CurrentState%’, Operator should be Equal to, Second operand should be ‘on’
+Next, inside of that If bracket, add another If action. First operand should be `%CurrentState%`, Operator should be `Equal to`, Second operand should be `on`
 
 <img width="468" height="285" alt="image" src="https://github.com/user-attachments/assets/a53484a3-2715-499b-8024-4ff5176f02fe" />
 
-Still inside of that second If bracket add a Run subflow action for the SendOn subflow, then an Else action, Then a Run subflow action for the SendOff subflow. 
+Still inside of that second If bracket add a Run subflow action for the SendOn subflow, then an Else action, Then a Run subflow action for the SendOff subflow.
+
 The entire second If bracket inside of the first If bracket should look like this 
 
 <img width="348" height="219" alt="image" src="https://github.com/user-attachments/assets/604b1802-f393-4034-a536-c340d9e6e8f2" />
 
-Outside of the second If bracket but inside the first If bracket add a set variable action the variable should be ‘LastState’ and the value should be ‘%CurrentState%’
+Outside of the second If bracket but inside the first If bracket add a set variable action the variable should be `LastState` and the value should be `%CurrentState%`
 
 <img width="468" height="279" alt="image" src="https://github.com/user-attachments/assets/f9d068bc-5e8f-4214-88dd-c16ea30a45be" />
 
 Outside of the If Brackets but still inside the Loop bracket add a Wait and set the value to how often you want the flow to check if you are in a meeting. 
+
 The entire Loop bracket should look like this. 
 
 <img width="465" height="631" alt="image" src="https://github.com/user-attachments/assets/db3d3ba6-1f8c-4351-9e3f-6cc8009954c7" />
