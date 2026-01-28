@@ -49,7 +49,7 @@ The second variable should be `CurrentState` and the value should be `off`
 
 <img width="468" height="112" alt="image" src="https://github.com/user-attachments/assets/ad8801d2-041b-49f1-999c-7dcb009ee024" />
 
-Next, create a Loop action, start from should be '1', end to should be '2147483647', and increment by should be '1'.
+Next, create a Loop action, start from should be `1`, end to should be `2147483647`, and increment by should be `1`.
 
 <img width="468" height="266" alt="image" src="https://github.com/user-attachments/assets/8077788f-6920-4532-aee4-8a8b47af80ad" />
 
