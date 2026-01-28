@@ -13,7 +13,7 @@ automation:
         allowed_methods:
           - POST
           - GET
-        # local_only: true   # leave commented for now (testing)
+        # local_only: true   
     action:
       - service: input_boolean.turn_on
         target:
@@ -28,7 +28,7 @@ automation:
         allowed_methods:
           - POST
           - GET
-        # local_only: true   # leave commented for now (testing)
+        # local_only: true   
     action:
       - service: input_boolean.turn_off
         target:
