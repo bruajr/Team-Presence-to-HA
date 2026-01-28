@@ -19,20 +19,30 @@ There are two light_automation_*.yaml files [light_automation_then_off.yaml](./l
 
 **Power Automate Flow**
 
-Start by creating two subflows, one for the webhook "On" and one for the webhook "Off"
 Create a new flow in Power Automate
+
 Create two new subflows called SendOn and SendOff
+
+<img width="416" height="35" alt="image" src="https://github.com/user-attachments/assets/09624c40-5c73-46da-a1aa-82b9cffa55aa" />
+
+In SendOn use the Invoke web service action, the URL will be `http://YOUR-HA-IP:8123/api/webhook/teams_on_call_on` be sure to replace YOUR-HA-IP with the local IP address of your Home Assistant instance.
+
+<img width="468" height="56" alt="image" src="https://github.com/user-attachments/assets/657c30e0-56ec-49ef-b8af-99c89796fd01" />
  
-In SendOn use the Invoke web service action, the URL will be ‘http://YOUR-HA-IP:8123/api/webhook/teams_on_call_on’ be sure to replace YOUR-HA-IP with the local IP address of your Home Assistant instance.
- 
-In SendOff use the Invoke web service action, the URL will be ‘http://YOUR-HA-IP:8123/api/webhook/teams_on_call_off’ be sure to replace YOUR-HA-IP with the local IP address of your Home Assistant instance.
- 
+In SendOff use the Invoke web service action, the URL will be `http://YOUR-HA-IP:8123/api/webhook/teams_on_call_off` be sure to replace YOUR-HA-IP with the local IP address of your Home Assistant instance.
+
+<img width="468" height="54" alt="image" src="https://github.com/user-attachments/assets/a5b11a65-6186-4951-9c43-55659a2a8bce" />
+
 These are the two webhooks created in teams_webhook.yaml file and will turn your input boolen on or off.
 In the main flow, create two Set variable actions.
-The first variable should be ‘LastState’ and the value should be ‘off’
+The first variable should be `LastState` and the value should be `off`
+
+<img width="468" height="283" alt="image" src="https://github.com/user-attachments/assets/21a97c12-b178-4a91-8ab5-adcafc76d477" />
  
-The second variable should be ‘CurrentState’ and the value should be ‘off’
- 
+The second variable should be `CurrentState` and the value should be `off`
+
+<img width="468" height="284" alt="image" src="https://github.com/user-attachments/assets/5f606ed2-3e59-4a69-a7be-2dac6000f08e" />
+
 **Note** all of the variables are case sensitive 
  
 Next, create a Loop action, start from should be ‘1’, end to should be ‘2147483647’, and increment by should be ‘1’.
