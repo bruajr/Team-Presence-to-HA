@@ -15,7 +15,7 @@ homeassistant:
   packages: !include_dir_named packages
 ```
 
-There are two light_automation_*.yaml files [light_automation_then_off.yaml](./light_automation_then_off.yaml) will set your indicator light to red when triggered and turn it off on the off trigger. [light_automation_then_restore.yaml](./light_automation_then_restore.yaml) will set your indicator light to red when triggered and return it to its previous state on the off trigger (or manual overide via dashboard button). It saves the current state as a seen when "On a Call" is triggered. These automations should be coppied to your automations.yaml file and they will be triggered via the input boolean set up in teams_wbhook.yaml. You will need to edit the device IDs for your specific lights. I am using Third Reality Zigbee Nightlights for this.
+There are two light_automation_*.yaml files [light_automation_then_off.yaml](./light_automation_then_off.yaml) will set your indicator light to red when triggered and turn it off on the off trigger. [light_automation_then_restore.yaml](./light_automation_then_restore.yaml) will set your indicator light to red when triggered and return it to its previous state on the off trigger (or manual overide via dashboard button). It saves the current state as a scene when "On a Call" is triggered. These automations should be coppied to your automations.yaml file and they will be triggered via the input boolean set up in teams_wbhook.yaml. You will need to edit the device IDs for your specific lights. I am using Third Reality Zigbee Nightlights for this.
 
 **Power Automate Flow**
 
