@@ -1,0 +1,43 @@
+- id: teams_call_lights_red_off
+  alias: "Teams: Night lights red while on call (turn off after)"
+  mode: restart
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.teams_on_call
+      to: "on"
+      for: "00:00:05"
+      id: call_on
+
+    - platform: state
+      entity_id: input_boolean.teams_on_call
+      to: "off"
+      for: "00:00:15"
+      id: call_off
+# Adjust for value to the delay you want
+  action:
+    - choose:
+        - conditions:
+            - condition: trigger
+              id: call_on
+          sequence:
+            # Turn lights dim red
+            - service: light.turn_on
+              target:
+                entity_id:
+                  - light.{Your Light ID}
+                  # add more here
+
+              data:
+                brightness_pct: 80
+                rgb_color: [255, 0, 0]
+
+        - conditions:
+            - condition: trigger
+              id: call_off
+          sequence:
+            # Turn lights off when call ends
+            - service: light.turn_off
+              target:
+                entity_id:
+                  - light.{YOUR LIGHT ID}

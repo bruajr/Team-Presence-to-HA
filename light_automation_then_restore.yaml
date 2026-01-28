@@ -1,0 +1,51 @@
+- id: teams_call_lights_red_restore
+  alias: "Teams: Night lights red while on call (restore after)"
+  mode: restart
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.teams_on_call
+      to: "on"
+      for: "00:00:05"
+      id: call_on
+
+    - platform: state
+      entity_id: input_boolean.teams_on_call
+      to: "off"
+      for: "00:00:15"
+      id: call_off
+# Adjust for value to set delay
+  action:
+    - choose:
+        - conditions:
+            - condition: trigger
+              id: call_on
+          sequence:
+            # Save current light states
+            - service: scene.create
+              data:
+                scene_id: teams_lights_before_call
+                snapshot_entities:
+                  - light.{Your Light ID}
+                  # add more here
+
+            # Turn lights dim red
+            - service: light.turn_on
+              target:
+                entity_id:
+                  - light.{Your Light ID}
+                  # add more here
+              data:
+                brightness_pct: 80
+                rgb_color: [255, 0, 0]
+
+        - conditions:
+            - condition: trigger
+              id: call_off
+          sequence:
+            # Restore previous state
+            - service: scene.turn_on
+              target:
+                entity_id: scene.teams_lights_before_call
+              data:
+                transition: 1
